@@ -11,7 +11,10 @@ def is_leap(year: int) -> bool:
     :param year: год, для которого вычисляем, является ли високосным
     :return: True - если високосный. False - не является високосным
     """
-    return False
+    if year % 4 == 0 and year % 100 != 0 or year % 400 == 0:
+        return True
+    else:
+        return False
 
 
 # =============================================
