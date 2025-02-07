@@ -3,7 +3,7 @@ from asserts import assert_true
 
 
 def fill_string(source_str: str, add_str: str) -> str:
-    return ''
+    return add_str.join(source_str)
 
 
 # =============================================
