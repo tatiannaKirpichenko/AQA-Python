@@ -12,7 +12,11 @@ def chars_count(str_value: str, char: str, case_sensitive: bool) -> int:
     :param case_sensitive: True - учитывать регистр, False - не учитывать
     :return: сколько раз символ встречается в строке
     """
-    return -1
+    if not case_sensitive:
+        str_value = str_value.lower()
+        char = char.lower()
+
+    return str_value.count(char)
 
 
 # =============================================
