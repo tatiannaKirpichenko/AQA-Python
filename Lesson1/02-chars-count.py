@@ -11,7 +11,7 @@ def chars_count(str_value: str, char: str) -> int:
         :return: сколько раз символ встречается в строке
         """
 
-    return -1
+    return str_value.count(char)
 
 
 # =============================================
