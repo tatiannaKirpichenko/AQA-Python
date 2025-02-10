@@ -6,13 +6,18 @@ def time_diff(start_hour: int, start_minute: int, end_hour: int, end_minute) -> 
     """
 
     :param start_hour: час первой отметки
-    :param start_minute: минута первой  отметки
+    :param start_minute: минута первой отметки
     :param end_hour: час конечной отметки
     :param end_minute: минута конечной отметки
     :return:
     """
+
     start_total_minutes = start_hour * 60 + start_minute
     end_total_minutes = end_hour * 60 + end_minute
+
+    if end_total_minutes < start_total_minutes:
+        end_total_minutes += 24 * 60
+
     difference = end_total_minutes - start_total_minutes
     return difference
 
