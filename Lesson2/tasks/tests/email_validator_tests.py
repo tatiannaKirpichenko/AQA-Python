@@ -11,3 +11,4 @@ class EmailValidatorTestCase(unittest.TestCase):
 
         self.assertTrue(validation_result)
 
+
