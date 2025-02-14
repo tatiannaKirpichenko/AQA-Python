@@ -11,4 +11,19 @@ class EmailValidatorTestCase(unittest.TestCase):
 
         self.assertTrue(validation_result)
 
+    def test_ValidateEmail_True(self):
+        email = "petr@gmail.com"
+
+        validation_result = validate_email(email)
+
+        self.assertTrue(validation_result)
+
+    def test_ValidateEmail_False(self):
+        email = "petr@ivanov@gmail.com"
+
+        validation_result = validate_email(email)
+
+        self.assertFalse(validation_result)
+
+
 
