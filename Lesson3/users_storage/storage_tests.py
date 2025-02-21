@@ -19,35 +19,7 @@ class StorageTestCase(unittest.TestCase):
         if os.path.isfile(self.storage_path):
             os.remove(self.storage_path)
 
-    def test_CreateUser_Positives_ValidPositive(self):
-
-        #arrange
-        command = self.external_app + " create PetrPetrov"
-
-        #act
-        res = self.execute_shell(command)
-
-        #assert
-        self.assertEqual(1, int(res))
-
-        content = self.read_storage()
-        self.assertEqual("1  {}PetrPetrov\n", content)
-
-    def test_GetUser_Positives_ValidPositive(self):
-        # arrange
-        create_command = self.external_app + " create PetrPetrov"
-        self.execute_shell(create_command)
-
-        get_command = self.external_app + " get 1"
-
-        # act
-        res = self.execute_shell(get_command)
-
-        # assert
-        self.assertEqual('PetrPetrov', res.strip())
-
-
-    def test_EqualsResultCreateAndGetUser_Positives_ValidPositive(self):
+    def test_storageTestCase_creatingUserAndReadingUserFromDatabase_ValidPositive(self):
 
         command = self.external_app + " create PetrPetrov"
 
@@ -66,33 +38,42 @@ class StorageTestCase(unittest.TestCase):
 
         self.assertEqual(resultCreate, resultGet)
 
-    def test_CreateNewUser_Positives_ValidPositive(self):
-        command = self.external_app + " create IvanIvanov"
+    def test_storageTestCase_creatingTwoUsersAndReadingTwoUsersFromDatabase_ValidPositive(self):
 
-        # act
+        command = self.external_app + " create PetrPetrov"
+
         res = self.execute_shell(command)
 
-        # assert
         self.assertEqual(1, int(res))
 
         content = self.read_storage()
-        self.assertEqual("1  {}IvanIvanov\n", content)
-
-    def test_GetNewUser_Positives_ValidPositive(self):
-        # arrange
-        create_command = self.external_app + " create IvanIvanov"
-        self.execute_shell(create_command)
+        resultCreate = self.assertEqual("1  {}PetrPetrov\n", content)
 
         get_command = self.external_app + " get 1"
 
-        # act
         res = self.execute_shell(get_command)
 
-        # assert
-        self.assertEqual('IvanIvanov', res.strip(), )
-        content = self.read_storage()
-        self.assertEqual("1  {}IvanIvanov\n", content)
+        resultGet = self.assertEqual('PetrPetrov', res.strip())
 
+        self.assertEqual(resultCreate, resultGet)
+
+        command = self.external_app + " create IvanIvanov"
+
+        res = self.execute_shell(command)
+
+        self.assertEqual(2, int(res))
+
+        content = self.read_storage()
+
+        resultCreate = self.assertEqual("1  {}PetrPetrov\n2  {}IvanIvanov\n", content)
+
+        get_command = self.external_app + " get 2"
+
+        res = self.execute_shell(get_command)
+
+        resultGet = self.assertEqual('IvanIvanov', res.strip())
+
+        self.assertEqual(resultCreate, resultGet)
 
     def execute_shell(self, command):
         pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -109,5 +90,3 @@ class StorageTestCase(unittest.TestCase):
         f.close()
 
         return content
-
-
