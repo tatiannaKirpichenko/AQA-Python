@@ -52,7 +52,7 @@ class StorageTestCase(unittest.TestCase):
         users = ["PetrPetrov", "IvanIvanov", "AlexSmirnov"]
         user_ids = []
 
-        first_user = users.pop(0)  # или можно использовать del users[0]
+        first_user = users.pop(0)
 
         for username in users:
             create_command = f"{self.external_app} create {username}"
