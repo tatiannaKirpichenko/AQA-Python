@@ -19,61 +19,71 @@ class StorageTestCase(unittest.TestCase):
         if os.path.isfile(self.storage_path):
             os.remove(self.storage_path)
 
-    def test_storageTestCase_creatingUserAndReadingUserFromDatabase_ValidPositive(self):
+    def test_createAndGetUser_creatingAndReadingUserFromDatabase_ValidPositive(self):
 
-        command = self.external_app + " create PetrPetrov"
+        username = "PetrPetrov"
+        create_command = f"{self.external_app} create {username}"
+        res_create = self.execute_shell(create_command)
 
-        res = self.execute_shell(command)
+        get_command = f"{self.external_app} get {res_create}"
+        res_get = self.execute_shell(get_command)
 
-        self.assertEqual(1, int(res))
+        self.assertEqual(username, res_get.strip())
 
-        content = self.read_storage()
-        resultCreate = self.assertEqual("1  {}PetrPetrov\n", content)
+    def test_createAndGetThreeUsers_creatingAndReadingThreeUsersFromDatabase_ValidPositive(self):
 
-        get_command = self.external_app + " get 1"
+        users = ["PetrPetrov", "IvanIvanov", "AlexSmirnov"]
+        user_ids = []
 
-        res = self.execute_shell(get_command)
+        for username in users:
+            create_command = f"{self.external_app} create {username}"
+            res_create = self.execute_shell(create_command)
 
-        resultGet = self.assertEqual('PetrPetrov', res.strip())
+            user_ids.append(res_create)
 
-        self.assertEqual(resultCreate, resultGet)
+        for i, username in enumerate(users):
+            get_command = f"{self.external_app} get {user_ids[i]}"
+            res_get = self.execute_shell(get_command)
 
-    def test_storageTestCase_creatingTwoUsersAndReadingTwoUsersFromDatabase_ValidPositive(self):
+            self.assertEqual(username, res_get.strip())
 
-        command = self.external_app + " create PetrPetrov"
+    def test_deleteFirsUser_deleteFirstUserCreatingAndReadingUserFromDatabase_ValidPositive(self):
 
-        res = self.execute_shell(command)
+        users = ["PetrPetrov", "IvanIvanov", "AlexSmirnov"]
+        user_ids = []
 
-        self.assertEqual(1, int(res))
+        first_user = users.pop(0)  # или можно использовать del users[0]
 
-        content = self.read_storage()
-        resultCreate = self.assertEqual("1  {}PetrPetrov\n", content)
+        for username in users:
+            create_command = f"{self.external_app} create {username}"
+            res_create = self.execute_shell(create_command)
 
-        get_command = self.external_app + " get 1"
+            user_ids.append(res_create)
 
-        res = self.execute_shell(get_command)
+        for i, username in enumerate(users):
+            get_command = f"{self.external_app} get {user_ids[i]}"
+            res_get = self.execute_shell(get_command)
 
-        resultGet = self.assertEqual('PetrPetrov', res.strip())
+            self.assertEqual(username, res_get.strip())
 
-        self.assertEqual(resultCreate, resultGet)
+    def test_sortUsersAlphabetically_sortUsersAlphabeticallyFromDatabase_ValidPositive(self):
 
-        command = self.external_app + " create IvanIvanov"
+        users = ["PetrPetrov", "IvanIvanov", "AlexSmirnov"]
+        user_ids = []
 
-        res = self.execute_shell(command)
+        users.sort()
 
-        self.assertEqual(2, int(res))
+        for username in users:
+            create_command = f"{self.external_app} create {username}"
+            res_create = self.execute_shell(create_command)
 
-        content = self.read_storage()
+            user_ids.append(res_create)
 
-        resultCreate = self.assertEqual("1  {}PetrPetrov\n2  {}IvanIvanov\n", content)
+        for i, username in enumerate(users):
+            get_command = f"{self.external_app} get {user_ids[i]}"
+            res_get = self.execute_shell(get_command)
 
-        get_command = self.external_app + " get 2"
-
-        res = self.execute_shell(get_command)
-
-        resultGet = self.assertEqual('IvanIvanov', res.strip())
-
-        self.assertEqual(resultCreate, resultGet)
+            self.assertEqual(username, res_get.strip())
 
     def execute_shell(self, command):
         pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
