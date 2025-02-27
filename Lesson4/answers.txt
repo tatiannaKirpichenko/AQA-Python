@@ -12,6 +12,6 @@
 
 7. $$('span[class="badge badge-secondary badge-pill"]')
 
-8. $$('h4 > .text-muted:first-child')
+8. $$('h4 > span:first-child')
 
 
