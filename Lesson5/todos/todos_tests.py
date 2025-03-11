@@ -62,7 +62,7 @@ class TodosTests(unittest.TestCase):
 
         tasks = self.driver.find_elements(By.CSS_SELECTOR, "ul.todo-list li")
 
-        assert len(tasks) == 0
+        self.assertEqual(0, len(tasks))
 
     def test_AddTaskMarkAsCompletedFilterCompleted_OneItemsLeftInTotalCounter(self):
         input_field = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
@@ -77,7 +77,7 @@ class TodosTests(unittest.TestCase):
         filter_completed_button.click()
 
         tasks = self.driver.find_elements(By.CSS_SELECTOR, "ul.todo-list li")
-        assert len(tasks) == 1
+        self.assertEqual(1, len(tasks))
 
     def test_AddTaskMarkAsCompleted_AppearsButtonClearCompleted(self):
         todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
