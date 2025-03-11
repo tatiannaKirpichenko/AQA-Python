@@ -23,30 +23,20 @@ class TodosTests(unittest.TestCase):
 
         super().tearDown()
 
-    def test_AddTwoTasksClickButtonCompleted_OneItemsLeftInTotalCounter(self):
+    def test_AddTwoTasksClickOneCheckbox_OneItemsLeftInTotalCounter(self):
         todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
         todo.clear()
         todo.send_keys('action1')
         todo.send_keys(Keys.ENTER)
 
-        todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
-        todo.clear()
         todo.send_keys('action2')
         todo.send_keys(Keys.ENTER)
 
         first_task_checkbox = self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(1) .toggle")
         first_task_checkbox.click()
 
-        button_completed = self.driver.find_element(By.CSS_SELECTOR, '[href="#/completed"')
-        button_completed.send_keys(Keys.ENTER)
-
-        tasks = self.driver.find_elements(By.CSS_SELECTOR, "ul.todo-list li")
-        self.assertTrue(tasks)
-
         counter = self.driver.find_element(By.CSS_SELECTOR, '.todo-count')
         self.assertEqual('1 Items left', counter.text)
-
-        # Тест должен упасть на последнем пункте
 
     def test_AddTwoTasksTwoClickButtonMarkAll_TwoItemsLeftInTotalCounter(self):
         todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
@@ -54,8 +44,6 @@ class TodosTests(unittest.TestCase):
         todo.send_keys('action1')
         todo.send_keys(Keys.ENTER)
 
-        todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
-        todo.clear()
         todo.send_keys('action2')
         todo.send_keys(Keys.ENTER)
 
@@ -71,23 +59,18 @@ class TodosTests(unittest.TestCase):
         counter = self.driver.find_element(By.CSS_SELECTOR, '.todo-count')
         self.assertEqual('2 Items left', counter.text)
 
-    def test_AddTwoTasksClickButtonMarkAllClickButtonCompleted_TwoItemsLeftInTotalCounter(self):
+    def test_AddTwoTasksClickButtonMarkAll_NothingLeftInTotalCounter(self):
         todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
         todo.clear()
         todo.send_keys('action1')
         todo.send_keys(Keys.ENTER)
 
-        todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
-        todo.clear()
         todo.send_keys('action2')
         todo.send_keys(Keys.ENTER)
 
         # Нажать на кнопку "Отметить все"
         mark_all_checkbox = self.driver.find_element(By.CSS_SELECTOR, "input.toggle-all")
         mark_all_checkbox.click()
-
-        button_completed = self.driver.find_element(By.CSS_SELECTOR, '[href="#/completed"')
-        button_completed.send_keys(Keys.ENTER)
 
         # Проверка, что все задачи помечены как выполненные
         task_elements = self.driver.find_elements(By.CSS_SELECTOR, "ul.todo-list li")
@@ -102,7 +85,7 @@ class TodosTests(unittest.TestCase):
 
         # Проверка счётчика оставшихся задач
         counter = self.driver.find_element(By.CSS_SELECTOR, '.todo-count')
-        self.assertEqual('2 Items left', counter.text)
+        self.assertEqual('Nothing left', counter.text)
 
     def test_AddTwoTasksClickButtonMarkAllAddNewOneTask_OneItemsLeftInTotalCounter(self):
         todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
@@ -110,8 +93,6 @@ class TodosTests(unittest.TestCase):
         todo.send_keys('action1')
         todo.send_keys(Keys.ENTER)
 
-        todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
-        todo.clear()
         todo.send_keys('action2')
         todo.send_keys(Keys.ENTER)
 

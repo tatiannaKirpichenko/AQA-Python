@@ -54,29 +54,30 @@ class TodosTests(unittest.TestCase):
     def test_AddTaskFilterCompleted_NothingLeftInTotalCounter(self):
         input_field = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
         input_field.clear()
-        input_field.send_keys('water the flower')
+        input_field.send_keys('action1')
         input_field.send_keys(Keys.ENTER)
 
-        button_completed = self.driver.find_element(By.CSS_SELECTOR, '[href="#/completed"')
+        button_completed = self.driver.find_element(By.CSS_SELECTOR, '[href="#/completed"]')
         button_completed.click()
 
-        self.assertEqual('inline-block', input_field.value_of_css_property('display'))
+        tasks = self.driver.find_elements(By.CSS_SELECTOR, "ul.todo-list li")
+
+        assert len(tasks) == 0
 
     def test_AddTaskMarkAsCompletedFilterCompleted_OneItemsLeftInTotalCounter(self):
         input_field = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
         input_field.clear()
-        input_field.send_keys('water the flower')
+        input_field.send_keys('action1')
         input_field.send_keys(Keys.ENTER)
 
-        check_box = self.driver.find_element(By.CSS_SELECTOR, '.toggle')
-        check_box.send_keys(Keys.ENTER)
+        checkbox = self.driver.find_element(By.CSS_SELECTOR, "ul.todo-list li input.toggle")
+        checkbox.click()
 
-        button_completed = self.driver.find_element(By.CSS_SELECTOR, '[href="#/completed"')
-        button_completed.send_keys(Keys.ENTER)
+        filter_completed_button = self.driver.find_element(By.LINK_TEXT, "Completed")
+        filter_completed_button.click()
 
-        counter = self.driver.find_element(By.CSS_SELECTOR, '.todo-count')
-
-        self.assertEqual('1 Items left', counter.text)
+        tasks = self.driver.find_elements(By.CSS_SELECTOR, "ul.todo-list li")
+        assert len(tasks) == 1
 
     def test_AddTaskMarkAsCompleted_AppearsButtonClearCompleted(self):
         todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
@@ -113,8 +114,6 @@ class TodosTests(unittest.TestCase):
         todo.send_keys('action1')
         todo.send_keys(Keys.ENTER)
 
-        todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
-        todo.clear()
         todo.send_keys('action2')
         todo.send_keys(Keys.ENTER)
 
@@ -140,8 +139,6 @@ class TodosTests(unittest.TestCase):
         todo.send_keys('action1')
         todo.send_keys(Keys.ENTER)
 
-        todo = self.driver.find_element(By.CSS_SELECTOR, '.new-todo')
-        todo.clear()
         todo.send_keys('action2')
         todo.send_keys(Keys.ENTER)
 
