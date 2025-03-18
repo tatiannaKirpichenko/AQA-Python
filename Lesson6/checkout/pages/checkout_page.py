@@ -1,4 +1,4 @@
-from locators.chechout_page_locators import CheckoutPageLocators
+from Lesson6.checkout.locators.chechout_page_locators import CheckoutPageLocators
 
 
 class CheckoutPage:
