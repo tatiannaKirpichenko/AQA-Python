@@ -1,6 +1,6 @@
 from selenium.webdriver import Keys
 
-from Lesson6.todos.locators.todo_page_locators import TodoPageLocators
+from locators.todo_page_locators import TodoPageLocators
 
 
 class TodoPage:

@@ -2,8 +2,8 @@ import unittest
 
 from selenium import webdriver
 
-from Lesson6.todos.config_manager import ConfigManager
-from Lesson6.todos.pages.todo_page import TodoPage
+from config_manager import ConfigManager
+from pages.todo_page import TodoPage
 
 
 class TodosTests(unittest.TestCase):
