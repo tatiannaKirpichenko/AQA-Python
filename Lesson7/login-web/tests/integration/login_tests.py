@@ -84,3 +84,5 @@ class LoginTests(unittest.TestCase):
         self.assertEqual('fail', response_data['status'])
         self.assertIsNone(response_data['data'])
 
+
+

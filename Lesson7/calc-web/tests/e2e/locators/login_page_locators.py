@@ -1,3 +1,5 @@
+from lib2to3.pgen2 import driver
+
 from selenium.webdriver.common.by import By
 
 
@@ -6,3 +8,4 @@ class LoginPageLocators:
     password_input = (By.ID, 'password')
     login_button = (By.ID, 'signIn')
     username_error_message = (By.CSS_SELECTOR, '#userName + #invalidUserName')
+    password_error_message = (By.CSS_SELECTOR, '#userName + #invalidUserName')

@@ -26,3 +26,12 @@ class LoginPage:
 
     def get_username_error_text(self):
         return self.driver.find_element(*LoginPageLocators.username_error_message).text
+
+    def is_password_error_message_shown(self):
+        password_error_message = self.driver.find_element(*LoginPageLocators.username_error_message)
+        return password_error_message.value_of_css_property('display') == 'block'
+
+    def get_password_error_text(self):
+        return self.driver.find_element(*LoginPageLocators.username_error_message).text
+
+
