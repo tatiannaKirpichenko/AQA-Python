@@ -5,8 +5,7 @@ from app.services.AuthService import AuthService
 from configuration import TestConfig
 
 
-class LoginTests(unittest.TestCase):
-
+class CalculateTest(unittest.TestCase):
 
     def __init__(self, methodName: str = "runTest"):
         super().__init__(methodName)
@@ -16,11 +15,9 @@ class LoginTests(unittest.TestCase):
         super().setUp()
         application.config.from_object(TestConfig)
         self.client = application.test_client()
-
         AuthService.tokens = {}
 
     def test_calculator_addition(self):
-
         login_data = {
             'userName': 'admin',
             'password': '123'
@@ -32,13 +29,19 @@ class LoginTests(unittest.TestCase):
         self.assertEqual('success', login_response_data['status'])
         self.assertIsNotNone(login_response_data['data']['token'])
 
+        token = login_response_data['data']['token']
+
         calculation_data = {
-            'first_operand': 5,
+            'firstOperand': 5,
             'operation': '+',
-            'second_operand': 3
+            'secondOperand': 3
         }
-        response = self.client.post('/calc', data=json.dumps(calculation_data), content_type='application/json')
-        self.assertEqual(200, response.status_code)
-        response_data = json.loads(response.get_data())
-        self.assertEqual('success', response_data['status'])
-        self.assertEqual(8, response_data['data']['result'])
+        calculation_response = self.client.post('/calc', data=json.dumps(calculation_data),
+                                                content_type='application/json',
+                                                headers={'x-auth-token': token})
+
+
+        self.assertEqual(200, calculation_response.status_code)
+        calculation_response_data = json.loads(calculation_response.get_data())
+        self.assertEqual('success', calculation_response_data['status'])
+        self.assertEqual(8, calculation_response_data['data']['result'])
