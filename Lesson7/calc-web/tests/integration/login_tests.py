@@ -10,6 +10,10 @@ from configuration import TestConfig
 class LoginTests(unittest.TestCase):
 
 
+    def __init__(self, methodName: str = "runTest"):
+        super().__init__(methodName)
+        self.calculator = None
+
     def setUp(self) -> None:
         super().setUp()
         application.config.from_object(TestConfig)
@@ -94,3 +98,6 @@ class LoginTests(unittest.TestCase):
 
         response_data = json.loads(response.get_data())
         self.assertEqual('fail', response_data['status'])
+
+
+

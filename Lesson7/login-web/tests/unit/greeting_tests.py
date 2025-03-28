@@ -39,3 +39,4 @@ class GreetingTest(unittest.TestCase):
         user_name = ''
         greeting = self.greeting_service.get(user_name)
         self.assertEqual('Welcome, ' + user_name + '!', greeting)
+
