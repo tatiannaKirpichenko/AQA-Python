@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "2ffebb79-0b79-411e-8cd2-0c96079fd1ec",
+		"name": "login-web",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30652956"
+	},
+	"item": [
+		{
+			"name": "LoginAndGetGreeting_ValidUserAndToken_GreetingGenerated",
+			"item": [
+				{
+					"name": "Valid Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Stores the token in an environment or global variable\r",
+									"var token = pm.response.json().data.token;\r",
+									"pm.environment.set(\"AuthToken\", token);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Token exist\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.data.token).is.not.null\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{appUrl}}/login",
+							"protocol": "http",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Greeting",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Status is success\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.status).to.eql('success');\r",
+									"});\r",
+									"pm.test(\"Greeting message contains username\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    expected_message = 'Welcome, ' + pm.environment.get('userName') + '!'\r",
+									"    pm.expect(jsonData.data).to.eql(expected_message);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"value": "{{AuthToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{appUrl}}/greeting",
+							"protocol": "http",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"greeting"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login_InvalidData_LoginFail",
+			"item": [
+				{
+					"name": "Invalid Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Message is fail\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).is.eql('fail')\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"fake-user\",\r\n    \"password\": \"fake-password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{appUrl}}/login",
+							"protocol": "http",
+							"host": [
+								"{{appUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
