@@ -8,3 +8,4 @@ class LoginPageLocators:
     login_button = (By.ID, 'signIn')
     username_error_message = (By.CSS_SELECTOR, '#userName + #invalidUserName')
     password_error_message = (By.CSS_SELECTOR, '#userName + #invalidUserName')
+
