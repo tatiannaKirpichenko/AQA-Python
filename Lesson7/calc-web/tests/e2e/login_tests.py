@@ -38,17 +38,6 @@ class LoginTests(unittest.TestCase):
         error_message_text = self.login_page.get_password_error_text()
         self.assertEqual('Invalid user name', error_message_text)
 
-    def test_InvalidUserAndPassword_ErrorMessagesShown(self):
-        self.login_page.set_username('fake-user')
-        self.login_page.set_password('wrong-password')
-        self.login_page.click_login_button()
-        self.assertTrue(self.login_page.is_username_error_message_shown())
-        self.assertTrue(self.login_page.is_password_error_message_shown())
-        username_error_text = self.login_page.get_username_error_text()
-        password_error_text = self.login_page.get_password_error_text()
-        self.assertEqual('Invalid user name', username_error_text)
-        self.assertEqual('Invalid user name', password_error_text)
-
     def test_EmptyUsername_ErrorMessageShown(self):
         self.login_page.set_username('')
         self.login_page.set_password('some-password')

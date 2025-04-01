@@ -40,4 +40,3 @@ class LoginTests(unittest.TestCase):
 
         greeting_text = self.greeting_page.get_greeting_text()
         self.assertEqual('Welcome, admin!', greeting_text)
-
