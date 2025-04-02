@@ -82,15 +82,7 @@ class LoginTests(unittest.TestCase):
         self.assertEqual('error', response_data['status'])
         self.assertIn('message', response_data)
 
-    def test_Login_MultipleFailedAttempts(self):
 
-        for _ in range(5):
-            login_data = {
-                'userName': 'admin',
-                'password': 'wrong_password'
-            }
-            response = self.client.post('/login', data=json.dumps(login_data), content_type='application/json')
-            self.assertEqual(200, response.status_code)
 
     def test_Login_InvalidJSON_ReturnsError(self):
         response = self.client.post('/login', data='invalid_json', content_type='application/json')
@@ -99,5 +91,57 @@ class LoginTests(unittest.TestCase):
         response_data = json.loads(response.get_data())
         self.assertEqual('fail', response_data['status'])
 
+
+    def test_Login_ValidUserNameAndEmptyPassword_ReturnsError(self):
+        login_data = {
+            'userName': 'admin',
+            'password': ''
+        }
+
+        response = self.client.post('/login', data=json.dumps(login_data), content_type='application/json')
+        self.assertEqual(200, response.status_code)
+
+        response_data = json.loads(response.get_data())
+        self.assertEqual('fail', response_data['status'])
+        self.assertIn('message', response_data)
+
+    def test_Login_emptyUserNameAndValidPassword_ReturnsError(self):
+        login_data = {
+            'userName': '',
+            'password': '123'
+        }
+
+        response = self.client.post('/login', data=json.dumps(login_data), content_type='application/json')
+        self.assertEqual(200, response.status_code)
+
+        response_data = json.loads(response.get_data())
+        self.assertEqual('fail', response_data['status'])
+        self.assertIn('message', response_data)
+
+    def test_Login_validUserNameAndInvalidPassword_ReturnsError(self):
+        login_data = {
+            'userName': 'admin',
+            'password': '1234'
+        }
+
+        response = self.client.post('/login', data=json.dumps(login_data), content_type='application/json')
+        self.assertEqual(200, response.status_code)
+
+        response_data = json.loads(response.get_data())
+        self.assertEqual('fail', response_data['status'])
+        self.assertIn('message', response_data)
+
+    def test_Login_InvalidUserNameAndValidPassword_ReturnsError(self):
+        login_data = {
+            'userName': 'Ivan',
+            'password': '123'
+        }
+
+        response = self.client.post('/login', data=json.dumps(login_data), content_type='application/json')
+        self.assertEqual(200, response.status_code)
+
+        response_data = json.loads(response.get_data())
+        self.assertEqual('fail', response_data['status'])
+        self.assertIn('message', response_data)
 
 
