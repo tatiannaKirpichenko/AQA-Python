@@ -83,7 +83,6 @@ class LoginTests(unittest.TestCase):
         self.assertIn('message', response_data)
 
 
-
     def test_Login_InvalidJSON_ReturnsError(self):
         response = self.client.post('/login', data='invalid_json', content_type='application/json')
         self.assertEqual(400, response.status_code)
