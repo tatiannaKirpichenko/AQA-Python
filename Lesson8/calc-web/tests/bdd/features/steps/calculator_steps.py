@@ -45,6 +45,8 @@ def step_perform_addition(context, op1, op2):
                                                 content_type='application/json',
                                                 headers={'x-auth-token': context.token})
     context.calculation_response_data = json.loads(calculation_response.get_data())
+    return calculation_response
+
 
 @when('I perform subtraction with operands {op1:d} and {op2:d}')
 def step_perform_subtraction(context, op1, op2):
@@ -57,6 +59,21 @@ def step_perform_subtraction(context, op1, op2):
                                                 content_type='application/json',
                                                 headers={'x-auth-token': context.token})
     context.calculation_response_data = json.loads(calculation_response.get_data())
+
+
+@when('I perform division with operands {op1:d} and {op2:d}')
+def submit_calculation(client, login):
+    calculation_data = {
+        'op1': 5,
+        'operation': '/',
+        'op2': 7
+    }
+
+    calculation_response = client.post('/calc', data=json.dumps(calculation_data),
+                                       content_type='application/json',
+                                       headers={'x-auth-token': login})
+
+    return calculation_response
 
 @then('the calculation response status should be "{expected_status}"')
 def step_assert_calculation_status(context, expected_status):
@@ -73,6 +90,11 @@ def step_impl(context):
     calculation_response_data = json.loads(context.calculation_response.get_data())
     assert calculation_response_data['status'] == 'error'
     assert 'message' in calculation_response_data
+
+
+
+
+
 
 
 
