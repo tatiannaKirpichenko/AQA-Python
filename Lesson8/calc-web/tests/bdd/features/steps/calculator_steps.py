@@ -45,7 +45,7 @@ def step_perform_addition(context, op1, op2):
                                                 content_type='application/json',
                                                 headers={'x-auth-token': context.token})
     context.calculation_response_data = json.loads(calculation_response.get_data())
-    return calculation_response
+
 
 
 @when('I perform subtraction with operands {op1:d} and {op2:d}')
@@ -74,19 +74,15 @@ def perform_calculation(context):
 
 
 @when('I perform division with operands {op1:d} and {op2:d}')
-def step_perform_division(context):
-    calculation_data = {
-        'op1': 'op1',
-        'operation': '/',
-        'op2': 'op2'
-    }
-    calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
-                                                       content_type='application/json',
-                                                       headers={'x-auth-token': context.token})
-
-    context.calculation_response_data = json.loads(calculation_response.get_data())
-    return calculation_response
-
+def step_perform_division(context, op1, op2):
+        calculation_data = {
+            'op1': op1,
+            'operation': '/',
+            'op2': op2
+        }
+        context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
+                                                   content_type='application/json',
+                                                   headers={'x-auth-token': context.token})
 
 
 @when('the user attempts to perform a calculation with empty values')
@@ -124,6 +120,8 @@ def check_failure_response(context):
     calculation_response_data = json.loads(context.calculation_response.get_data())
     assert calculation_response_data['status'] == 'fail'
     assert 'message' in calculation_response_data
+
+
 
 
 

@@ -34,6 +34,7 @@ Feature: Calculator Operations
     Then the calculation response status should be "success"
     And the result should be -13
 
+
   Scenario: Successful login and valid addition of two negative numbers
     Given I have valid login credentials
     When I login with username "admin" and password "123"
@@ -55,6 +56,7 @@ Feature: Calculator Operations
     Then the calculation response status should be "success"
     And the result should be 25
 
+
   Scenario: Successful login and handling of empty inputs
     Given I have valid login credentials
     When I login with username "admin" and password "123"
@@ -63,8 +65,6 @@ Feature: Calculator Operations
 
     When the user attempts to perform a calculation with empty values
     Then the response should indicate an error
-
-
 
   Scenario: User attempts to add two fractional numbers after logging in
     Given I have valid login credentials
@@ -75,14 +75,15 @@ Feature: Calculator Operations
     When the user attempts to calculate the sum of two fractional numbers
     Then the response should indicate an error
 
-  Scenario: User attempts to divide two integer numbers after logging in
+  Scenario: User attempts to divide two integers and receives a failure response
     Given I have valid login credentials
     When I login with username "admin" and password "123"
     Then the login response status should be "success"
     And a token should be returned
 
-    When I perform division with operands {op1:d} and {op2:d}
-    And the response should indicate a failure with a message
+    When I perform division with operands 7 and 5
+    Then the response should indicate a failure with a message
+
 
 
 
