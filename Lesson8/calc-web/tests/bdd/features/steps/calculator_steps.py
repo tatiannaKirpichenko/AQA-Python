@@ -10,14 +10,14 @@ def step_application_running(context):
     context.client = application.test_client()
     application.config.from_object(TestConfig)
 
-@given('I have valid login credentials')
+@given('valid login credentials')
 def step_valid_login_credentials(context):
     context.login_data = {
         'userName': 'admin',
         'password': '123'
     }
 
-@when('I login with username "{user_name}" and password "{password}"')
+@when('login with username "{user_name}" and password "{password}"')
 def step_login(context, user_name, password):
     context.login_data['userName'] = user_name
     context.login_data['password'] = password
@@ -34,7 +34,7 @@ def step_assert_login_status(context, expected_status):
 def step_assert_token(context):
     assert context.token is not None
 
-@when('I perform addition with operands {op1:d} and {op2:d}')
+@when('addition with operands {op1} and {op2}')
 def step_perform_addition(context, op1, op2):
     calculation_data = {
         'op1': op1,
@@ -47,8 +47,7 @@ def step_perform_addition(context, op1, op2):
     context.calculation_response_data = json.loads(calculation_response.get_data())
 
 
-
-@when('I perform subtraction with operands {op1:d} and {op2:d}')
+@when('subtraction with operands {op1} and {op2}')
 def step_perform_subtraction(context, op1, op2):
     calculation_data = {
         'op1': op1,
@@ -60,20 +59,18 @@ def step_perform_subtraction(context, op1, op2):
                                                 headers={'x-auth-token': context.token})
     context.calculation_response_data = json.loads(calculation_response.get_data())
 
-@when('the user attempts to calculate the sum of two fractional numbers')
-def perform_calculation(context):
+@when('addition with different operands {op1} and {op2}')
+def perform_calculation(context,op1,op2):
     calculation_data = {
-        'op1': '0.5',
+        'op1': op1,
         'operation': '+',
-        'op2': '0.7 '
+        'op2': op2
     }
     context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
                                                        content_type='application/json',
                                                        headers={'x-auth-token': context.token})
 
-
-
-@when('I perform division with operands {op1:d} and {op2:d}')
+@when('division with operands {op1} and {op2}')
 def step_perform_division(context, op1, op2):
         calculation_data = {
             'op1': op1,
@@ -83,18 +80,6 @@ def step_perform_division(context, op1, op2):
         context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
                                                    content_type='application/json',
                                                    headers={'x-auth-token': context.token})
-
-
-@when('the user attempts to perform a calculation with empty values')
-def step_impl(context):
-        calculation_data = {
-            'op1': ' ',
-            'operation': '+',
-            'op2': ' '
-        }
-        context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
-                                                           content_type='application/json',
-                                                           headers={'x-auth-token': context.token})
 
 
 @then('the calculation response status should be "{expected_status}"')
