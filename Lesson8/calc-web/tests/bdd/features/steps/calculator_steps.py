@@ -73,16 +73,21 @@ def perform_calculation(context):
 
 
 
-@when('the user is trying to calculate the quotient of two integers')
-def step_perform_addition(context):
+@when('I perform division with operands {op1:d} and {op2:d}')
+def step_perform_division(context):
     calculation_data = {
-        'op1': '7',
+        'op1': 'op1',
         'operation': '/',
-        'op2': '5'
+        'op2': 'op2'
     }
-    context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
+    calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
                                                        content_type='application/json',
                                                        headers={'x-auth-token': context.token})
+
+    context.calculation_response_data = json.loads(calculation_response.get_data())
+    return calculation_response
+
+
 
 @when('the user attempts to perform a calculation with empty values')
 def step_impl(context):
@@ -94,6 +99,7 @@ def step_impl(context):
         context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
                                                            content_type='application/json',
                                                            headers={'x-auth-token': context.token})
+
 
 @then('the calculation response status should be "{expected_status}"')
 def step_assert_calculation_status(context, expected_status):
@@ -111,6 +117,13 @@ def step_impl(context):
     assert calculation_response_data['status'] == 'error'
     assert 'message' in calculation_response_data
 
+
+@then('the response should indicate a failure with a message')
+def check_failure_response(context):
+    assert context.calculation_response.status_code == 200
+    calculation_response_data = json.loads(context.calculation_response.get_data())
+    assert calculation_response_data['status'] == 'fail'
+    assert 'message' in calculation_response_data
 
 
 

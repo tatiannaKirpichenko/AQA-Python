@@ -81,8 +81,8 @@ Feature: Calculator Operations
     Then the login response status should be "success"
     And a token should be returned
 
-    When the user is trying to calculate the quotient of two integers
-    And a token should be returned
+    When I perform division with operands {op1:d} and {op2:d}
+    And the response should indicate a failure with a message
 
 
 
