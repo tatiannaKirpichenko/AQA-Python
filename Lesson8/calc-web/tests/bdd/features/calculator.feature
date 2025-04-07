@@ -61,26 +61,26 @@ Feature: Calculator Operations
     Then the login response status should be "success"
     And a token should be returned
 
-    When I perform addition with operands " " and " "
-    Then I should receive an error response
+    When the user attempts to perform a calculation with empty values
+    Then the response should indicate an error
 
-  Scenario: Successful login and handling of addition of two fractional numbers
+  Scenario: User logs in and tries to perform an addition of two fractional numbers
     Given I have valid login credentials
     When I login with username "admin" and password "123"
     Then the login response status should be "success"
     And a token should be returned
 
-    When I perform addition with operands "0.5" and "0.7"
-    Then I should receive an error response
+    When I perform division with operands 7 and 5
+    Then the response should indicate an error
 
-  Scenario: Successful login and handling of division of two integer numbers
+  Scenario: User attempts to add two fractional numbers after logging in
     Given I have valid login credentials
     When I login with username "admin" and password "123"
     Then the login response status should be "success"
     And a token should be returned
 
-    When I perform division with operands "7" and "5"
-    Then I should receive an error response
+    When I perform subtraction with operands 0.5 and 0.7
+    Then the response should indicate an error
 
 
 

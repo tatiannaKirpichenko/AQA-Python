@@ -60,20 +60,28 @@ def step_perform_subtraction(context, op1, op2):
                                                 headers={'x-auth-token': context.token})
     context.calculation_response_data = json.loads(calculation_response.get_data())
 
+@when('the user attempts to perform a calculation with empty values')
+def step_impl(context):
+        calculation_data = {
+            'op1': ' ',
+            'operation': '+',
+            'op2': ' '
+        }
+        context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
+                                                           content_type='application/json',
+                                                           headers={'x-auth-token': context.token})
+
 
 @when('I perform division with operands {op1:d} and {op2:d}')
-def submit_calculation(client, login):
-    calculation_data = {
-        'op1': 5,
-        'operation': '/',
-        'op2': 7
-    }
-
-    calculation_response = client.post('/calc', data=json.dumps(calculation_data),
-                                       content_type='application/json',
-                                       headers={'x-auth-token': login})
-
-    return calculation_response
+def step_perform_addition(context, op1, op2):
+        calculation_data = {
+            'op1': op1,
+            'operation': '/',
+            'op2': op2
+        }
+        context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
+                                                           content_type='application/json',
+                                                           headers={'x-auth-token': context.token})
 
 @then('the calculation response status should be "{expected_status}"')
 def step_assert_calculation_status(context, expected_status):
@@ -84,13 +92,12 @@ def step_assert_result(context, expected_result):
     assert context.calculation_response_data['data'] == expected_result
 
 
-@then('I should receive an error response')
+@then('the response should indicate an error')
 def step_impl(context):
     assert context.calculation_response.status_code == 500
     calculation_response_data = json.loads(context.calculation_response.get_data())
     assert calculation_response_data['status'] == 'error'
     assert 'message' in calculation_response_data
-
 
 
 
