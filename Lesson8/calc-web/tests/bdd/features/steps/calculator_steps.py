@@ -60,24 +60,36 @@ def step_perform_subtraction(context, op1, op2):
                                                 headers={'x-auth-token': context.token})
     context.calculation_response_data = json.loads(calculation_response.get_data())
 
+@when('the user attempts to calculate the sum of two fractional numbers')
+def perform_calculation(context):
+    calculation_data = {
+        'op1': '0.5',
+        'operation': '+',
+        'op2': '0.7 '
+    }
+    context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
+                                                       content_type='application/json',
+                                                       headers={'x-auth-token': context.token})
+
+
+
+@when('the user is trying to calculate the quotient of two integers')
+def step_perform_addition(context):
+    calculation_data = {
+        'op1': '7',
+        'operation': '/',
+        'op2': '5'
+    }
+    context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
+                                                       content_type='application/json',
+                                                       headers={'x-auth-token': context.token})
+
 @when('the user attempts to perform a calculation with empty values')
 def step_impl(context):
         calculation_data = {
             'op1': ' ',
             'operation': '+',
             'op2': ' '
-        }
-        context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
-                                                           content_type='application/json',
-                                                           headers={'x-auth-token': context.token})
-
-
-@when('I perform division with operands {op1:d} and {op2:d}')
-def step_perform_addition(context, op1, op2):
-        calculation_data = {
-            'op1': op1,
-            'operation': '/',
-            'op2': op2
         }
         context.calculation_response = context.client.post('/calc', data=json.dumps(calculation_data),
                                                            content_type='application/json',
