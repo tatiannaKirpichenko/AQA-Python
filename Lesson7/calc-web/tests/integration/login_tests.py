@@ -34,7 +34,7 @@ class LoginTests(unittest.TestCase):
         self.assertEqual('success', response_data['status'])
         self.assertIsNotNone(response_data['data']['token'])
 
-    def test_Login_InvalidUser_ReturnsError(self):
+    def test_Login_InvalidUserNameAndPassword_ReturnsError(self):
         login_data = {
             'userName': 'fake-user',
             'password': 'fake-password'

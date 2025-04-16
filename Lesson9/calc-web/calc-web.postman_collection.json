@@ -1,0 +1,1236 @@
+{
+	"info": {
+		"_postman_id": "42a3ca91-44c1-4572-ae1d-12c6424021b4",
+		"name": "calc-web",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43871680"
+	},
+	"item": [
+		{
+			"name": "calc-web",
+			"item": [
+				{
+					"name": "Login_ValidUser",
+					"item": [
+						{
+							"name": "Login_ValidUser",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"x-auth-token\",jsonData.data.token);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login_InvalidUserNameAndPassword",
+					"item": [
+						{
+							"name": "Login_InvalidUserNameAndPassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"x-auth-token\",jsonData.message);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{invalidUserName}}\",\r\n    \"password\": \"{{invalidPassword}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login_EmptyFields",
+					"item": [
+						{
+							"name": "Login_EmptyFields",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"x-auth-token\",jsonData.message);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{emptyUserName}}\",\r\n    \"password\": \"{{emptyPassword}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login_ValidUserNameAndEmptyPassword",
+					"item": [
+						{
+							"name": "Login_ValidUserNameAndEmptyPassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"x-auth-token\",jsonData.message);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{emptyPassword}} \"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login_emptyUserNameAndValidPassword",
+					"item": [
+						{
+							"name": "Login_emptyUserNameAndValidPassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"x-auth-token\",jsonData.message);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"emptyUserName\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login_validUserNameAndInvalidPassword",
+					"item": [
+						{
+							"name": "Login_validUserNameAndInvalidPassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"x-auth-token\",jsonData.message);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"userName\",\r\n    \"password\": \"invalidPassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login_InvalidUserNameAndValidPassword",
+					"item": [
+						{
+							"name": "Login_InvalidUserNameAndValidPassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.environment.set(\"x-auth-token\",jsonData.message);\r",
+											"\r",
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"userName\",\r\n    \"password\": \"invalidPassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Calculator_LoginAndValidAdditionOperation",
+					"item": [
+						{
+							"name": "Calculator_Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Login successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data.token).to.not.be.undefined;\r",
+											"    pm.environment.set(\"x-auth-token\", responseData.data.token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Calculator_ValidAdditionOperation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Calculation successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data).to.equal(8);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"op1\": 5,\r\n    \"operation\": \"+\",\r\n    \"op2\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/calc",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"calc"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Calculator_LoginAndValidSubtractionOperation",
+					"item": [
+						{
+							"name": "Calculator_Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Login successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data.token).to.not.be.undefined;\r",
+											"    pm.environment.set(\"x-auth-token\", responseData.data.token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Calculator_LoginAndValidSubtractionOperation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Calculation successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data).to.equal(7);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"op1\": 10,\r\n    \"operation\": \"-\",\r\n    \"op2\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/calc",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"calc"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Calculator_LoginAndValidResultAdditionTwoNegativeNumbers",
+					"item": [
+						{
+							"name": "Calculator_Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Login successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data.token).to.not.be.undefined;\r",
+											"    pm.environment.set(\"x-auth-token\", responseData.data.token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Calculator_LoginAndValidResultAdditionTwoNegativeNumbers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Статус код 200\", function () {    \r",
+											"pm.response.to.have.status(200);});\r",
+											"const responseData = pm.response.json();\r",
+											"pm.test(\"Вычитание успешно\", function () {    \r",
+											"pm.expect(responseData.status).to.eql('success');    \r",
+											"pm.expect(responseData.data).to.eql(3);});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n    \"op1\":-5,\r\n    \"operation\": \"-\",\r\n    \"op2\": -8\r\n }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/calc",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"calc"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Calculator_LoginAndValidResultSubtractionTwoNegativeNumbers",
+					"item": [
+						{
+							"name": "Calculator_Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Login successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data.token).to.not.be.undefined;\r",
+											"    pm.environment.set(\"x-auth-token\", responseData.data.token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Calculator_LoginAndValidResultSubtractionTwoNegativeNumbers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Calculation successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data).to.equal(25); \r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"op1\":10,\r\n    \"operation\": \"-\",\r\n    \"op2\": -15\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/calc",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"calc"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Calculator_LoginAndEnterStringInsteadOfNumber",
+					"item": [
+						{
+							"name": "Calculator_Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Login successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data.token).to.not.be.undefined;\r",
+											"    pm.environment.set(\"x-auth-token\", responseData.data.token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Calculator_LoginAndEnterStringInsteadOfNumber",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Статус код 500\", function () {  \r",
+											"pm.response.to.have.status(500);});\r",
+											"const responseData = pm.response.json();\r",
+											"pm.test(\"Ошибка возвращена\", function () {    \r",
+											"pm.expect(responseData.status).to.eql('error');    \r",
+											"pm.expect(responseData).to.have.property('message');});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"op1\": \"string1\",\r\n    \"operation\": \"+\",\r\n    \"op2\": \"string2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:7000/calc",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "7000",
+									"path": [
+										"calc"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Calculator_LoginAndEnterAdditionTwoFractionalNumbers",
+					"item": [
+						{
+							"name": "Calculator_Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Login successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data.token).to.not.be.undefined;\r",
+											"    pm.environment.set(\"x-auth-token\", responseData.data.token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Calculator_LoginAndEnterAdditionTwoFractionalNumbers",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Статус код 500\", function () {  \r",
+											"pm.response.to.have.status(500);});\r",
+											"const responseData = pm.response.json();\r",
+											"pm.test(\"Ошибка возвращена\", function () {    \r",
+											"pm.expect(responseData.status).to.eql('error');    \r",
+											"pm.expect(responseData).to.have.property('message');});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"op1\": \"0.5\",\r\n    \"operation\": \"+\",\r\n    \"op2\": \"0.7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/calc",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"calc"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Calculator_LoginAndEnterDivisionTwoIntegerNumber",
+					"item": [
+						{
+							"name": "Calculator_Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Login successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data.token).to.not.be.undefined;\r",
+											"    pm.environment.set(\"x-auth-token\", responseData.data.token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Calculator_LoginAndEnterDivisionTwoIntegerNumber",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Статус код 200\", function () {   \r",
+											"pm.response.to.have.status(200);});\r",
+											"const responseData = pm.response.json()\r",
+											"pm.test(\"Результат деления неудачен\", function () {   \r",
+											"pm.expect(responseData.status).to.eql('fail');    \r",
+											"pm.expect(responseData).to.have.property('message');});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"op1\": 7,\r\n    \"operation\": \"/\",\r\n    \"op2\": \"5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/calc",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"calc"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "LoginAndEnterNothing",
+					"item": [
+						{
+							"name": "Calculator_Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Login successful\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.status).to.equal('success');\r",
+											"    pm.expect(responseData.data.token).to.not.be.undefined;\r",
+											"    pm.environment.set(\"x-auth-token\", responseData.data.token);\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userName\": \"{{userName}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/login",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Calculator_LoginAndEnterNothing",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Статус код 500\", function () {    \r",
+											"pm.response.to.have.status(500);});\r",
+											"const responseData = pm.response.json();\r",
+											"pm.test(\"Ошибка при пустых значениях\", function () {    \r",
+											"pm.expect(responseData.status).to.eql('error');   \r",
+											"pm.expect(responseData).to.have.property('message');});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{x-auth-token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"op1\": \" \",\r\n    \"operation\": \"+\",\r\n    \"op2\": \" \"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://{{appUrl}}/calc",
+									"protocol": "http",
+									"host": [
+										"{{appUrl}}"
+									],
+									"path": [
+										"calc"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

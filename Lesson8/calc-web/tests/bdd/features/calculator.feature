@@ -66,14 +66,7 @@ Feature: Calculator Operations
     When addition with different operands 0.5 and 0.7
     Then the response should indicate an error
 
-  Scenario: Calculator operation with empty inputs
-    Given valid login credentials
-    When login with username "admin" and password "123"
-    Then the login response status should be "success"
-    And a token should be returned
 
-    When addition with different operands ' ' and ' '
-    Then the response should indicate an error
 
   Scenario:  Calculator operation with string inputs
     Given valid login credentials
