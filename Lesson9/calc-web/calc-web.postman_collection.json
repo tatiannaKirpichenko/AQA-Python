@@ -379,7 +379,7 @@
 					]
 				},
 				{
-					"name": "Calculator_LoginAndValidAdditionOperation",
+					"name": "Calculator_validAdditionOperation",
 					"item": [
 						{
 							"name": "Calculator_Login",
@@ -485,7 +485,7 @@
 					]
 				},
 				{
-					"name": "Calculator_LoginAndValidSubtractionOperation",
+					"name": "Calculator_validSubtractionOperation",
 					"item": [
 						{
 							"name": "Calculator_Login",
@@ -536,7 +536,7 @@
 							"response": []
 						},
 						{
-							"name": "Calculator_LoginAndValidSubtractionOperation",
+							"name": "Calculator_validSubtractionOperation",
 							"event": [
 								{
 									"listen": "test",
@@ -591,7 +591,7 @@
 					]
 				},
 				{
-					"name": "Calculator_LoginAndValidResultAdditionTwoNegativeNumbers",
+					"name": "Calculator_validResultAdditionTwoNegativeNumbers",
 					"item": [
 						{
 							"name": "Calculator_Login",
@@ -642,7 +642,7 @@
 							"response": []
 						},
 						{
-							"name": "Calculator_LoginAndValidResultAdditionTwoNegativeNumbers",
+							"name": "Calculator_validResultAdditionTwoNegativeNumbers",
 							"event": [
 								{
 									"listen": "test",
@@ -697,7 +697,7 @@
 					]
 				},
 				{
-					"name": "Calculator_LoginAndValidResultSubtractionTwoNegativeNumbers",
+					"name": "Calculator_validResultSubtractionTwoNegativeNumbers",
 					"item": [
 						{
 							"name": "Calculator_Login",
@@ -748,7 +748,7 @@
 							"response": []
 						},
 						{
-							"name": "Calculator_LoginAndValidResultSubtractionTwoNegativeNumbers",
+							"name": "Calculator_validResultSubtractionTwoNegativeNumbers",
 							"event": [
 								{
 									"listen": "test",
@@ -803,7 +803,7 @@
 					]
 				},
 				{
-					"name": "Calculator_LoginAndEnterStringInsteadOfNumber",
+					"name": "Calculator_InvalidResultSubtractionTwoStrings",
 					"item": [
 						{
 							"name": "Calculator_Login",
@@ -854,7 +854,7 @@
 							"response": []
 						},
 						{
-							"name": "Calculator_LoginAndEnterStringInsteadOfNumber",
+							"name": "Calculator_InvalidResultSubtractionTwoStrings",
 							"event": [
 								{
 									"listen": "test",
@@ -913,7 +913,7 @@
 					]
 				},
 				{
-					"name": "Calculator_LoginAndEnterAdditionTwoFractionalNumbers",
+					"name": "Calculator_InvalidResultAdditionTwoFractionalNumbers",
 					"item": [
 						{
 							"name": "Calculator_Login",
@@ -964,7 +964,7 @@
 							"response": []
 						},
 						{
-							"name": "Calculator_LoginAndEnterAdditionTwoFractionalNumbers",
+							"name": "Calculator_InvalidResultAdditionTwoFractionalNumbers",
 							"event": [
 								{
 									"listen": "test",
@@ -1019,7 +1019,7 @@
 					]
 				},
 				{
-					"name": "Calculator_LoginAndEnterDivisionTwoIntegerNumber",
+					"name": "Calculator_InvalidResultDivisionTwoIntegerNumber",
 					"item": [
 						{
 							"name": "Calculator_Login",
@@ -1070,7 +1070,7 @@
 							"response": []
 						},
 						{
-							"name": "Calculator_LoginAndEnterDivisionTwoIntegerNumber",
+							"name": "Calculator_InvalidResultDivisionTwoIntegerNumber",
 							"event": [
 								{
 									"listen": "test",
@@ -1125,7 +1125,7 @@
 					]
 				},
 				{
-					"name": "LoginAndEnterNothing",
+					"name": "Calculator_InvalidResultAdditionEmptyValue",
 					"item": [
 						{
 							"name": "Calculator_Login",
@@ -1176,7 +1176,7 @@
 							"response": []
 						},
 						{
-							"name": "Calculator_LoginAndEnterNothing",
+							"name": "Calculator_InvalidResultAdditionEmptyValue",
 							"event": [
 								{
 									"listen": "test",
