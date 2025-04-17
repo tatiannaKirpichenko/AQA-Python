@@ -894,15 +894,11 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:7000/calc",
+									"raw": "http://{{appUrl}}/calc",
 									"protocol": "http",
 									"host": [
-										"127",
-										"0",
-										"0",
-										"1"
+										"{{appUrl}}"
 									],
-									"port": "7000",
 									"path": [
 										"calc"
 									]
