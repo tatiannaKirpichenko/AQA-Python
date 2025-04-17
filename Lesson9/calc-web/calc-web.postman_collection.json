@@ -803,7 +803,7 @@
 					]
 				},
 				{
-					"name": "Calculator_InvalidResultSubtractionTwoStrings",
+					"name": "Calculator_InvalidResultAdditionTwoStrings",
 					"item": [
 						{
 							"name": "Calculator_Login",
@@ -854,7 +854,7 @@
 							"response": []
 						},
 						{
-							"name": "Calculator_InvalidResultSubtractionTwoStrings",
+							"name": "Calculator_InvalidResultAdditionTwoStrings",
 							"event": [
 								{
 									"listen": "test",
