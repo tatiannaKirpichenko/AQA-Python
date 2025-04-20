@@ -1,0 +1,11 @@
+INFO     root:test_calculator.py:224 Starting test for valid subtraction operation with login.
+INFO     root:test_calculator.py:231 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+INFO     root:test_calculator.py:233 Login response status code: 200
+INFO     root:test_calculator.py:236 Login response data: {'message': None, 'data': {'success': True, 'token': 'eeba2bf9-54a4-4c52-b9c3-ce0231707f72'}, 'status': 'success'}
+INFO     root:test_calculator.py:238 Login response data: {'message': None, 'data': {'success': True, 'token': 'eeba2bf9-54a4-4c52-b9c3-ce0231707f72'}, 'status': 'success'}
+INFO     root:test_calculator.py:240 Received token: eeba2bf9-54a4-4c52-b9c3-ce0231707f72
+INFO     root:test_calculator.py:248 Sending calculation request with data: {'op1': 'string1', 'operation': '+', 'op2': 'string2'}
+INFO     root:test_calculator.py:253 Calculation response status code: 500
+INFO     root:test_calculator.py:257 Calculation response data: {'message': "Unknown error: invalid literal for int() with base 10: 'string1'", 'data': None, 'status': 'error'}
+INFO     root:test_calculator.py:261 Test completed: test_Calculator_enterStringInsteadOfNumber_LoginSuccessAndTokenReturned
+WARNING  root:test_calculator.py:266 Driver is not initialized. Screenshot cannot be saved.

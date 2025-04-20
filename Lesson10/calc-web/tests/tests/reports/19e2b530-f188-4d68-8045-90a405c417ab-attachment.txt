@@ -1,0 +1,10 @@
+INFO     root:test_calculator.py:303 Starting test for valid subtraction operation with login.
+INFO     root:test_calculator.py:310 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+INFO     root:test_calculator.py:312 Login response status code: 200
+INFO     root:test_calculator.py:315 Login response data: {'message': None, 'data': {'success': True, 'token': '7c246c43-691a-46f9-a60c-193874da0912'}, 'status': 'success'}
+INFO     root:test_calculator.py:317 Login response data: {'message': None, 'data': {'success': True, 'token': '7c246c43-691a-46f9-a60c-193874da0912'}, 'status': 'success'}
+INFO     root:test_calculator.py:319 Received token: 7c246c43-691a-46f9-a60c-193874da0912
+INFO     root:test_calculator.py:327 Sending calculation request with data: {'op1': '7', 'operation': '/', 'op2': '5'}
+INFO     root:test_calculator.py:332 Calculation response status code: 200
+INFO     root:test_calculator.py:336 Calculation response data: {'message': 'unknown operation', 'data': None, 'status': 'fail'}
+INFO     root:test_calculator.py:339 Received expected failure status with message: unknown operation

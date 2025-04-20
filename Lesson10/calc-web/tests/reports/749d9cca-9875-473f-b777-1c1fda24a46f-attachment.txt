@@ -1,0 +1,11 @@
+[32mINFO    [0m root:test_calculator.py:312 Starting test for valid subtraction operation with login.
+[32mINFO    [0m root:test_calculator.py:319 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+[32mINFO    [0m root:test_calculator.py:321 Login response status code: 200
+[32mINFO    [0m root:test_calculator.py:324 Login response data: {'message': None, 'data': {'success': True, 'token': 'a03903ab-b811-42cd-ac76-ada53f930b35'}, 'status': 'success'}
+[32mINFO    [0m root:test_calculator.py:326 Login response data: {'message': None, 'data': {'success': True, 'token': 'a03903ab-b811-42cd-ac76-ada53f930b35'}, 'status': 'success'}
+[32mINFO    [0m root:test_calculator.py:328 Received token: a03903ab-b811-42cd-ac76-ada53f930b35
+[32mINFO    [0m root:test_calculator.py:336 Sending calculation request with data: {'op1': '0.5', 'operation': '+', 'op2': '0.7'}
+[32mINFO    [0m root:test_calculator.py:341 Calculation response status code: 500
+[32mINFO    [0m root:test_calculator.py:345 Calculation response data: {'message': "Unknown error: invalid literal for int() with base 10: '0.5'", 'data': None, 'status': 'error'}
+[32mINFO    [0m root:test_calculator.py:349 Test completed: test_Calculator_enterStringInsteadOfNumber_LoginSuccessAndTokenReturned
+[33mWARNING [0m root:test_calculator.py:354 Driver is not initialized. Screenshot cannot be saved.

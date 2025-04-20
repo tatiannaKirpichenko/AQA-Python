@@ -1,0 +1,9 @@
+INFO     root:test_calculator.py:225 Starting test for valid subtraction operation with login.
+INFO     root:test_calculator.py:232 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+INFO     root:test_calculator.py:234 Login response status code: 200
+INFO     root:test_calculator.py:237 Login response data: {'message': None, 'data': {'success': True, 'token': '77148330-13ec-428e-ad79-635c569b420e'}, 'status': 'success'}
+INFO     root:test_calculator.py:239 Login response data: {'message': None, 'data': {'success': True, 'token': '77148330-13ec-428e-ad79-635c569b420e'}, 'status': 'success'}
+INFO     root:test_calculator.py:241 Received token: 77148330-13ec-428e-ad79-635c569b420e
+INFO     root:test_calculator.py:249 Performing calculation with invalid data: {'op1': 'string1', 'operation': '+', 'op2': 'string2'}
+INFO     root:test_calculator.py:255 Calculation response status code: 500
+INFO     root:test_calculator.py:258 Calculation response data: {'message': "Unknown error: invalid literal for int() with base 10: 'string1'", 'data': None, 'status': 'error'}

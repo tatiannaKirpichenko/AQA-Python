@@ -1,0 +1,7 @@
+INFO     root:test_calculator.py:32 Starting test for valid addition operation with login.
+INFO     root:test_calculator.py:39 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+INFO     root:test_calculator.py:45 Login response status code: 200
+INFO     root:test_calculator.py:51 Login response data: {'message': None, 'data': {'success': True, 'token': '11cf756d-d6ec-4cda-a4c4-65bada9382e7'}, 'status': 'success'}
+INFO     root:test_calculator.py:56 Token received: 11cf756d-d6ec-4cda-a4c4-65bada9382e7
+INFO     root:test_calculator.py:58 Starting test for valid addition operation.
+INFO     root:test_calculator.py:67 Sending calculation request: {'op1': 5, 'operation': '+', 'op2': 3}

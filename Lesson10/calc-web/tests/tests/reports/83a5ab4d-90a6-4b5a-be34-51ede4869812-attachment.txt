@@ -1,0 +1,2 @@
+INFO     root:test_calculator.py:50 Starting test for valid addition operation with login.
+INFO     root:test_calculator.py:57 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}

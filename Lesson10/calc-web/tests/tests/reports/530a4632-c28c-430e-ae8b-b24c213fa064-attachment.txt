@@ -1,0 +1,1 @@
+INFO     root:test_calculator.py:26 Setting up the test environment.

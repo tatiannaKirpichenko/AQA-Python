@@ -1,0 +1,9 @@
+INFO     root:test_calculator.py:89 Starting test for valid subtraction operation with login.
+INFO     root:test_calculator.py:96 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+INFO     root:test_calculator.py:99 Login response status code: 200
+INFO     root:test_calculator.py:103 Login response data: {'message': None, 'data': {'success': True, 'token': '5adcd144-8726-4f21-804b-0fe2a0b11c49'}, 'status': 'success'}
+INFO     root:test_calculator.py:106 Login response data: {'message': None, 'data': {'success': True, 'token': '5adcd144-8726-4f21-804b-0fe2a0b11c49'}, 'status': 'success'}
+INFO     root:test_calculator.py:109 Received token: 5adcd144-8726-4f21-804b-0fe2a0b11c49
+INFO     root:test_calculator.py:117 Performing calculation with data: {'op1': 10, 'operation': '-', 'op2': 3}
+INFO     root:test_calculator.py:123 Calculation response status code: 200
+INFO     root:test_calculator.py:127 Calculation response data: {'message': None, 'data': 7, 'status': 'success'}
