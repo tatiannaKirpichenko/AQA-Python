@@ -1,0 +1,10 @@
+INFO     root:test_calculator.py:137 Starting test for valid subtraction operation with login.
+INFO     root:test_calculator.py:144 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+INFO     root:test_calculator.py:146 Login response status code: 200
+INFO     root:test_calculator.py:149 Login response data: {'message': None, 'data': {'success': True, 'token': '5977b208-5b7f-4e9b-88c5-f617b71ff73c'}, 'status': 'success'}
+INFO     root:test_calculator.py:151 Login response data: {'message': None, 'data': {'success': True, 'token': '5977b208-5b7f-4e9b-88c5-f617b71ff73c'}, 'status': 'success'}
+INFO     root:test_calculator.py:153 Received token: 5977b208-5b7f-4e9b-88c5-f617b71ff73c
+INFO     root:test_calculator.py:161 Sending calculation request: {'op1': -5, 'operation': '-', 'op2': -8}
+INFO     root:test_calculator.py:166 Received response with status code: 200
+INFO     root:test_calculator.py:169 Calculation response data: {'message': None, 'data': 3, 'status': 'success'}
+INFO     root:test_calculator.py:175 The result of the addition operation is correct.

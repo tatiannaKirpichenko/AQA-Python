@@ -1,0 +1,31 @@
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:101 Selenium Manager binary found at: C:\Users\User\anaconda3\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:114 Executing process: C:\Users\User\anaconda3\Lib\site-packages\selenium\webdriver\common\windows\selenium-manager.exe --browser chrome --debug --language-binding python --output json
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:140 chromedriver not found in PATH
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:140 chrome detected at C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Running command: wmic datafile where name='C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe' get Version /value
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Output: "\r\r\n\r\r\nVersion=135.0.7049.96\r\r\n\r\r\n\r\r\n\r"
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Detected browser: chrome 135.0.7049.96
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Required driver: chromedriver 135.0.7049.95
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:140 chromedriver 135.0.7049.95 already in the cache
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Driver path: C:\Users\User\.cache\selenium\chromedriver\win64\135.0.7049.95\chromedriver.exe
+[35mDEBUG   [0m selenium.webdriver.common.selenium_manager:selenium_manager.py:140 Browser path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+[35mDEBUG   [0m selenium.webdriver.common.service:service.py:231 Started executable: `C:\Users\User\.cache\selenium\chromedriver\win64\135.0.7049.95\chromedriver.exe` in a child process with pid: 24924 using 0 to output -3
+[35mDEBUG   [0m selenium.webdriver.remote.remote_connection:remote_connection.py:403 POST http://localhost:56592/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'browserVersion': None, 'goog:chromeOptions': {'extensions': [], 'binary': 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe', 'args': ['headless']}}}}
+[35mDEBUG   [0m urllib3.connectionpool:connectionpool.py:243 Starting new HTTP connection (1): localhost:56592
+[35mDEBUG   [0m urllib3.connectionpool:connectionpool.py:546 http://localhost:56592 "POST /session HTTP/11" 200 0
+[35mDEBUG   [0m selenium.webdriver.remote.remote_connection:remote_connection.py:436 Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"135.0.7049.96","chrome":{"chromedriverVersion":"135.0.7049.95 (de2eb485a1951079e63bdb57ce25544d2dc79c15-refs/branch-heads/7049@{#1836})","userDataDir":"C:\\Users\\User\\AppData\\Local\\Temp\\scoped_dir24924_250966812"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:56595"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"windows","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"cd7360a7bdcfe59dfa499a6a3640e81c"}} | headers=HTTPHeaderDict({'Content-Length': '880', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[35mDEBUG   [0m selenium.webdriver.remote.remote_connection:remote_connection.py:465 Finished Request
+[32mINFO    [0m root:test_calculator.py:128 Starting test for valid subtraction operation with login.
+[32mINFO    [0m root:test_calculator.py:135 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+[32mINFO    [0m root:test_calculator.py:137 Login response status code: 200
+[32mINFO    [0m root:test_calculator.py:140 Login response data: {'message': None, 'data': {'success': True, 'token': '8abcfef6-4c41-4cb3-a599-353721f7efd1'}, 'status': 'success'}
+[32mINFO    [0m root:test_calculator.py:142 Login response data: {'message': None, 'data': {'success': True, 'token': '8abcfef6-4c41-4cb3-a599-353721f7efd1'}, 'status': 'success'}
+[32mINFO    [0m root:test_calculator.py:144 Received token: 8abcfef6-4c41-4cb3-a599-353721f7efd1
+[32mINFO    [0m root:test_calculator.py:152 Sending calculation request: {'op1': -5, 'operation': '-', 'op2': -8}
+[32mINFO    [0m root:test_calculator.py:157 Received response with status code: 200
+[32mINFO    [0m root:test_calculator.py:160 Calculation response data: {'message': None, 'data': 3, 'status': 'success'}
+[32mINFO    [0m root:test_calculator.py:166 The result of the addition operation is correct.
+[35mDEBUG   [0m selenium.webdriver.remote.remote_connection:remote_connection.py:403 DELETE http://localhost:56592/session/cd7360a7bdcfe59dfa499a6a3640e81c {}
+[35mDEBUG   [0m urllib3.connectionpool:connectionpool.py:546 http://localhost:56592 "DELETE /session/cd7360a7bdcfe59dfa499a6a3640e81c HTTP/11" 200 0
+[35mDEBUG   [0m selenium.webdriver.remote.remote_connection:remote_connection.py:436 Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+[35mDEBUG   [0m selenium.webdriver.remote.remote_connection:remote_connection.py:465 Finished Request

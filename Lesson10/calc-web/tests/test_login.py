@@ -1,11 +1,10 @@
 import logging
 from datetime import datetime
-
+import os
 import allure
 from selenium import webdriver
 
 from pages.login_page import LoginPage
-
 
 
 class TestLogin:
@@ -18,14 +17,16 @@ class TestLogin:
         self.driver.get(self.page_url)
         self.login_page = LoginPage(self.driver)
 
+        self.screenshot_dir = 'screenshots'
+        if not os.path.exists(self.screenshot_dir):
+            os.makedirs(self.screenshot_dir)
+            logging.info('Screenshot directory created at: %s', self.screenshot_dir)
 
     def teardown_method(self):
         self.driver.close()
 
-
-
     def save_screenshot(self, name):
-        path = './tests/screenshots/'
+        path = './tests/screenshots'
         name = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + f'__{name}.png'
         logging.debug(f'saving screenshot {name}')
         self.driver.save_screenshot(path + name)
@@ -35,7 +36,7 @@ class TestLogin:
     @allure.description('Login with invalid credentials and check that username error message is shown')
     def test_InvalidUser_ErrorMessageShown(self):
         logging.info('Trying to log in with invalid username and password')
-        self.login_page.log_in('fake-user' , 'fake-user')
+        self.login_page.log_in('fake-user', 'fake-user')
         self.login_page.click_login_button()
 
         logging.info('Checking if username error message is shown')
@@ -74,7 +75,7 @@ class TestLogin:
     @allure.description('Login with valid username and empty password and check that password error message is shown')
     def test_EmptyPassword_ErrorMessageShown(self):
         logging.info('Checking if user name error message is shown')
-        self.login_page.log_in('valid-user',' ')
+        self.login_page.log_in('valid-user', ' ')
         self.login_page.click_login_button()
 
         logging.info('Checking if password error message is shown')
@@ -83,4 +84,3 @@ class TestLogin:
         logging.info(f'Error message text: {error_message_text}')
         assert 'Invalid user name' == error_message_text
         self.driver.save_screenshot(f'./tests/screenshots/test_EmptyPassword_ErrorMessageShown.png')
-

@@ -1,0 +1,10 @@
+INFO     root:test_calculator.py:31 Starting test for valid addition operation with login.
+INFO     root:test_calculator.py:38 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+INFO     root:test_calculator.py:41 Login response status code: 200
+INFO     root:test_calculator.py:44 Login response data: {'message': None, 'data': {'success': True, 'token': 'ec664975-e0ef-4467-934b-0f6d370d00b7'}, 'status': 'success'}
+INFO     root:test_calculator.py:47 Token received: ec664975-e0ef-4467-934b-0f6d370d00b7
+INFO     root:test_calculator.py:48 Starting test for valid addition operation.
+INFO     root:test_calculator.py:56 Sending calculation request: {'op1': 5, 'operation': '+', 'op2': 3}
+INFO     root:test_calculator.py:61 Received response with status code: 200
+INFO     root:test_calculator.py:64 Calculation response data: {'message': None, 'data': 8, 'status': 'success'}
+INFO     root:test_calculator.py:70 The result of the addition operation is correct.

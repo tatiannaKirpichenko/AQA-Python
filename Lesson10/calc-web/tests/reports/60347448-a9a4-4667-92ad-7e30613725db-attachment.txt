@@ -1,0 +1,6 @@
+[32mINFO    [0m root:test_calculator.py:276 Starting test for valid subtraction operation with login.
+[32mINFO    [0m root:test_calculator.py:283 Attempting to log in with credentials: {'userName': 'admin', 'password': '123'}
+[32mINFO    [0m root:test_calculator.py:285 Login response status code: 200
+[32mINFO    [0m root:test_calculator.py:288 Login response data: {'message': None, 'data': {'success': True, 'token': '90a93783-2c5e-4a99-97d1-b2e4c6e76d30'}, 'status': 'success'}
+[32mINFO    [0m root:test_calculator.py:290 Login response data: {'message': None, 'data': {'success': True, 'token': '90a93783-2c5e-4a99-97d1-b2e4c6e76d30'}, 'status': 'success'}
+[32mINFO    [0m root:test_calculator.py:292 Received token: 90a93783-2c5e-4a99-97d1-b2e4c6e76d30
