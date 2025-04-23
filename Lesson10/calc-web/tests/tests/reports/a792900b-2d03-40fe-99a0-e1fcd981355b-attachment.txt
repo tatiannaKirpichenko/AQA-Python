@@ -1,0 +1,1 @@
+<bound method CalculatorPage.get_result of <pages.calculator_page.CalculatorPage object at 0x00000211FED700B0>>

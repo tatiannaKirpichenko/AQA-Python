@@ -1,0 +1,1 @@
+INFO     root:test_calc.py:39 trying to log in as valid user

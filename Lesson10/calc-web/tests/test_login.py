@@ -11,22 +11,20 @@ class TestLogin:
     page_url = 'http://127.0.0.1:7000/'
 
     def setup_method(self) -> None:
+        if not os.path.isdir('./tests/screenshots'):
+            os.mkdir('./tests/screenshots')
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         self.driver = webdriver.Chrome(options=options)
         self.driver.get(self.page_url)
         self.login_page = LoginPage(self.driver)
 
-        self.screenshot_dir = 'screenshots'
-        if not os.path.exists(self.screenshot_dir):
-            os.makedirs(self.screenshot_dir)
-            logging.info('Screenshot directory created at: %s', self.screenshot_dir)
 
     def teardown_method(self):
         self.driver.close()
 
     def save_screenshot(self, name):
-        path = './tests/screenshots'
+        path = './tests/screenshots/'
         name = datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + f'__{name}.png'
         logging.debug(f'saving screenshot {name}')
         self.driver.save_screenshot(path + name)

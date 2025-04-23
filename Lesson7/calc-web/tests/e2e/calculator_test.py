@@ -34,6 +34,7 @@ class CalculatorTests(unittest.TestCase):
         self.calculator_page.click_calc_button()
         self.assertTrue('8', self.calculator_page.get_result())
 
+
     def test_subtractionPositiveNumbersResultPositiveNumber_SuccessfulLoginAndValidResult(self):
         self.login_page.set_username('admin')
         self.login_page.set_password('123')
