@@ -163,7 +163,7 @@ class CalculateTest(unittest.TestCase):
 
     def test_Calculator_enterNothing_LoginSuccessAndTokenReturned(self):
         login_data = {
-            'userName': 'admin',
+             'userName': 'admin',
             'password': '123'
         }
         login_response = self.client.post('/login', data=json.dumps(login_data), content_type='application/json')
