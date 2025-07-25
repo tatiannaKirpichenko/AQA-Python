@@ -1,6 +1,6 @@
 import unittest
 
-from Lesson2.tasks.src.email_validator import generate_email
+from Example2.tasks.src.email_validator import generate_email
 
 
 class GenerateEmailTestCase(unittest.TestCase):
